@@ -1,88 +1,85 @@
-// app.js - Main application logic and common functionality
-
 // DOM elements
 const addMatchBtn = document.getElementById('addMatchBtn');
 const logoutBtn = document.getElementById('logoutBtn');
 const hamburger = document.querySelector('.hamburger');
 
-// Check login status on page load
-document.addEventListener('DOMContentLoaded', function() {
+// Run after page loads
+document.addEventListener('DOMContentLoaded', function () {
     checkLoginStatus();
     initMobileMenu();
-    // Load matches if on homepage
-    if (document.getElementById('liveMatches')) {
-        loadMatches();
-    }
 });
 
-// Check if user is logged in
+// Check login status
 function checkLoginStatus() {
-    const user = getCurrentUser();
+
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+
+    const loginLink = document.getElementById("loginLink");
+    const signupLink = document.getElementById("signupLink");
+
     if (user) {
-        document.querySelector('.nav-links a[href="login.html"]').style.display = 'none';
-        document.querySelector('.nav-links a[href="signup.html"]').style.display = 'none';
-        addMatchBtn.style.display = 'flex';
-        logoutBtn.style.display = 'flex';
+
+        if (loginLink) loginLink.style.display = "none";
+        if (signupLink) signupLink.style.display = "none";
+
+        if (addMatchBtn) addMatchBtn.style.display = "inline-block";
+        if (logoutBtn) logoutBtn.style.display = "inline-block";
+
     } else {
-        document.querySelector('.nav-links a[href="login.html"]').style.display = 'block';
-        document.querySelector('.nav-links a[href="signup.html"]').style.display = 'block';
-        addMatchBtn.style.display = 'none';
-        logoutBtn.style.display = 'none';
+
+        if (loginLink) loginLink.style.display = "inline-block";
+        if (signupLink) signupLink.style.display = "inline-block";
+
+        if (addMatchBtn) addMatchBtn.style.display = "none";
+        if (logoutBtn) logoutBtn.style.display = "none";
     }
 }
 
-// Get current logged-in user
-function getCurrentUser() {
-    returnJSON.parse(localStorage.getItem('currentUser'));
-}
-
-// Initialize mobile menu
+// Mobile menu
 function initMobileMenu() {
-    hamburger.addEventListener('click', function() {
+
+    if (!hamburger) return;
+
+    hamburger.addEventListener('click', function () {
+
         const navLinks = document.querySelector('.nav-links');
+
         navLinks.classList.toggle('active');
         hamburger.classList.toggle('active');
+
     });
+
 }
 
-// Add match button click handler
+// Add match button
 if (addMatchBtn) {
-    addMatchBtn.addEventListener('click', function() {
-        if (!getCurrentUser()) {
-            alert('Please login to add matches!');
-            window.location.href = 'login.html';
+
+    addMatchBtn.addEventListener('click', function () {
+
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (!user) {
+
+            alert("Please login first");
+            window.location.href = "login.html";
             return;
+
         }
-        window.location.href = 'add-match.html';
+
+        window.location.href = "add-match.html";
+
     });
+
 }
 
-// Logout functionality
+// Logout button
 if (logoutBtn) {
-    logoutBtn.addEventListener('click', function() {
-        localStorage.removeItem('currentUser');
-        checkLoginStatus();
+
+    logoutBtn.addEventListener('click', function () {
+
+        localStorage.removeItem("currentUser");
         window.location.reload();
+
     });
+
 }
-
-// Mobile responsiveness
-function handleResize() {
-    if (window.innerWidth > 768) {
-        const navLinks = document.querySelector('.nav-links');
-        const hamburgerActive = hamburger.classList.contains('active');
-        if (hamburgerActive) {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-        }
-    }
-}
-
-window.addEventListener('resize', handleResize);
-
-// Set today's date as default for date inputs
-document.querySelectorAll('input[type="date"]').forEach(input => {
-    if (!input.value) {
-        input.valueAsDate = new Date();
-    }
-});
