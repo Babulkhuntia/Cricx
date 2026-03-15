@@ -33,7 +33,7 @@ function checkLoginStatus() {
 
 // Get current logged-in user
 function getCurrentUser() {
-    return JSON.parse(localStorage.getItem('currentUser'));
+    returnJSON.parse(localStorage.getItem('currentUser'));
 }
 
 // Initialize mobile menu
