@@ -1,162 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gully Cricket Live - Home</title>
+
+<title>Cricx Live Cricket</title>
 
 <link rel="stylesheet" href="style.css">
 
-<!-- Font Awesome Icons -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header>
-<nav class="navbar">
+<header class="navbar">
 
-<div class="nav-brand">
+<div class="logo">
 <i class="fas fa-baseball-ball"></i>
-<span>Gully Cricket Live</span>
+<span>Cricx</span>
 </div>
 
-<div class="nav-links">
+<nav>
 
-<a href="index.html" class="active">Home</a>
-
-<a id="loginLink" href="login.html">Login</a>
-
-<a id="signupLink" href="signup.html">Signup</a>
-
-<button id="addMatchBtn" class="btn-primary" style="display:none;">
-<i class="fas fa-plus"></i> Add Match
-</button>
-
-<button id="logoutBtn" class="btn-secondary" style="display:none;">
-<i class="fas fa-sign-out-alt"></i> Logout
-</button>
-
-</div>
-
-<div class="hamburger">
-<span></span>
-<span></span>
-<span></span>
-</div>
+<a href="#">Home</a>
+<a href="#">Live Scores</a>
+<a href="#">Matches</a>
+<a href="#">Login</a>
 
 </nav>
+
 </header>
 
-<main>
 
-<div class="container">
+<section class="hero">
 
-<!-- Live Matches -->
+<h1>Live Cricket Scores</h1>
+<p>Follow your gully cricket matches live</p>
 
-<section class="matches-section">
+</section>
 
-<h2>
-<i class="fas fa-fire"></i> Live Matches
-</h2>
 
-<div id="liveMatches" class="matches-grid">
+<section class="matches">
+
+<h2>🔥 Live Matches</h2>
+
+<div id="liveMatches" class="match-grid">
+
 </div>
 
 </section>
 
 
-<!-- Upcoming Matches -->
+<section class="matches">
 
-<section class="matches-section">
+<h2>📅 Upcoming Matches</h2>
 
-<h2>
-<i class="fas fa-clock"></i> Upcoming Matches
-</h2>
+<div id="upcomingMatches" class="match-grid">
 
-<div id="upcomingMatches" class="matches-grid">
 </div>
 
 </section>
 
-</div>
 
-</main>
+<footer>
 
+<p>© 2025 Cricx Live Cricket</p>
 
-<!-- Scoreboard Modal -->
-
-<div id="scoreboardModal" class="modal">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<h3 id="matchTitle"></h3>
-
-<span class="close">&times;</span>
-
-</div>
+</footer>
 
 
-<div class="scoreboard">
-
-<div class="team-score" id="team1Score">
-
-<h4 id="team1Name"></h4>
-
-<div class="score" id="team1ScoreDisplay">0/0</div>
-
-<div class="overs" id="team1Overs">0.0 ov</div>
-
-</div>
-
-
-<div class="vs">VS</div>
-
-
-<div class="team-score" id="team2Score">
-
-<h4 id="team2Name"></h4>
-
-<div class="score" id="team2ScoreDisplay">0/0</div>
-
-<div class="overs" id="team2Overs">0.0 ov</div>
-
-</div>
-
-</div>
-
-
-<div class="modal-actions">
-
-<button class="btn-primary" onclick="updateScore('team1')">
-+1 Run Team 1
-</button>
-
-<button class="btn-primary" onclick="updateScore('team2')">
-+1 Run Team 2
-</button>
-
-<button class="btn-secondary" onclick="resetScore()">
-Reset Score
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- JavaScript Files -->
-
-<script src="app.js" defer></script>
-
-<script src="matches.js" defer></script>
-
-<script src="scoreboard.js" defer></script>
+<script src="matches.js"></script>
 
 </body>
 
