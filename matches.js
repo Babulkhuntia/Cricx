@@ -101,7 +101,7 @@ upcomingContainer.appendChild(matchCard);
 });
 
 }
-function openScoreboard(match) {
+function openScoreboard(match.id) {
 localStorage.setItem("selectedMatch", JSON.stringify(match));
 window.location.href = "scoreboard.html";
 }
