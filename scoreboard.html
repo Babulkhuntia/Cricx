@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scoreboard</title>
+</head>
+<body>
+
+<h2 id="matchTitle"></h2>
+
+<script>
+const match = JSON.parse(localStorage.getItem("selectedMatch"));
+
+if(match){
+document.getElementById("matchTitle").innerText =
+match.team1 + " vs " + match.team2;
+}
+</script>
+
+</body>
+</html>
