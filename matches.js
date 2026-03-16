@@ -75,6 +75,9 @@ const matchCard = document.createElement("div");
 
 matchCard.classList.add("match-card");
 
+matchCard.addEventListener("click", function () {
+openScoreboard(match);
+});
 matchCard.innerHTML = `
 
 <h3>${match.team1} vs ${match.team2}</h3>
@@ -97,4 +100,8 @@ upcomingContainer.appendChild(matchCard);
 
 });
 
+}
+function openScoreboard(match) {
+localStorage.setItem("selectedMatch", JSON.stringify(match));
+window.location.href = "scoreboard.html";
 }
