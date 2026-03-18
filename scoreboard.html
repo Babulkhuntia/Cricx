@@ -4,8 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Match Scoreboard</title>
+<title>Cricx Live Scoreboard</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -14,15 +13,11 @@
 <body>
 
 <header class="navbar">
-
 <div class="logo">Cricx</div>
-
 <nav>
 <a href="index.html">Home</a>
 </nav>
-
 </header>
-
 
 <section class="matches">
 
@@ -30,25 +25,59 @@
 
 <div class="match-card">
 
-<h3>Score</h3>
-
-<p id="scoreDisplay">0 / 0</p>
-
+<h1 id="teamScore">0 / 0</h1>
 <p id="oversDisplay">Overs: 0.0</p>
 
 </div>
 
 
-<br>
+<h3>Batsmen</h3>
 
-<button onclick="addRun()">+1 Run</button>
+<div class="match-card">
 
-<button onclick="addWicket()">Wicket</button>
+<input id="b1Name" placeholder="Batsman 1 Name">
+<p id="batsman1Display">0 (0)</p>
 
-<button onclick="addBall()">Ball</button>
+<input id="b2Name" placeholder="Batsman 2 Name">
+<p id="batsman2Display">0 (0)</p>
+
+</div>
+
+
+<h3>Bowler</h3>
+
+<div class="match-card">
+
+<input id="bowlerName" placeholder="Bowler Name">
+
+<p id="bowlerStats">Overs: 0 | Runs: 0 | Wickets: 0</p>
+
+</div>
+
+
+<h3>Scoring</h3>
+
+<div class="run-buttons">
+
+<button onclick="scoreRun(0)">0</button>
+<button onclick="scoreRun(1)">1</button>
+<button onclick="scoreRun(2)">2</button>
+<button onclick="scoreRun(3)">3</button>
+<button onclick="scoreRun(4)">4</button>
+<button onclick="scoreRun(6)">6</button>
+
+<button onclick="addWicket()">W</button>
+<button onclick="addWide()">WD</button>
+<button onclick="addNoBall()">NB</button>
+
+</div>
+
+
+<h3>Ball History</h3>
+
+<div class="match-card" id="ballHistory"></div>
 
 </section>
-
 
 <script src="scoreboard.js"></script>
 
