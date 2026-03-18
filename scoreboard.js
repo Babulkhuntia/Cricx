@@ -1,57 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
+let match = JSON.parse(localStorage.getItem("selectedMatch"));
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+document.getElementById("matchTitle").innerText =
+match.team1 + " vs " + match.team2;
 
-<title>Match Scoreboard</title>
+let teamRuns = 0;
+let wickets = 0;
+let balls = 0;
 
-<link rel="stylesheet" href="style.css">
+let b1Runs = 0;
+let b1Balls = 0;
 
-</head>
+let b2Runs = 0;
+let b2Balls = 0;
 
-<body>
+let striker = 1;
 
-<header class="navbar">
+let bowlerRuns = 0;
+let bowlerWickets = 0;
 
-<div class="logo">Cricx</div>
-
-<nav>
-<a href="index.html">Home</a>
-</nav>
-
-</header>
+let history = [];
 
 
-<section class="matches">
+function updateDisplay(){
 
-<h2 id="matchTitle"></h2>
+document.getElementById("teamScore").innerText =
+teamRuns + " / " + wickets;
 
-<div class="match-card">
+let overs = Math.floor(balls/6) + "." + (balls%6);
 
-<h3>Score</h3>
+document.getElementById("oversDisplay").innerText =
+"Overs: " + overs;
 
-<p id="scoreDisplay">0 / 0</p>
+let star1 = striker === 1 ? " ★" : "";
+let star2 = striker === 2 ? " ★" : "";
 
-<p id="oversDisplay">Overs: 0.0</p>
+document.getElementById("batsman1Display").innerText =
+b1Runs + " (" + b1Balls + ")" + star1;
 
-</div>
+document.getElementById("batsman2Display").innerText =
+b2Runs + " (" + b2Balls + ")" + star2;
+
+document.getElementById("bowlerStats").innerText =
+"Overs: " + overs + " | Runs: " + bowlerRuns + " | Wickets: " + bowlerWickets;
+
+document.getElementById("ballHistory").innerText =
+history.join(" ");
+
+}
 
 
-<br>
+function scoreRun(run){
 
-<button onclick="addRun()">+1 Run</button>
+teamRuns += run;
+bowlerRuns += run;
 
-<button onclick="addWicket()">Wicket</button>
+balls++;
 
-<button onclick="addBall()">Ball</button>
+if(striker === 1){
+b1Runs += run;
+b1Balls++;
+}else{
+b2Runs += run;
+b2Balls++;
+}
 
-</section>
+history.push(run);
+
+if(run % 2 === 1){
+changeStrike();
+}
+
+if(balls % 6 === 0){
+changeStrike();
+}
+
+updateDisplay();
+
+}
 
 
-<script src="scoreboard.js"></script>
+function addWicket(){
 
-</body>
+wickets++;
+bowlerWickets++;
+balls++;
 
-</html>
+history.push("W");
+
+updateDisplay();
+
+}
+
+
+function addWide(){
+
+teamRuns++;
+bowlerRuns++;
+
+history.push("WD");
+
+updateDisplay();
+
+}
+
+
+function addNoBall(){
+
+teamRuns++;
+bowlerRuns++;
+
+history.push("NB");
+
+updateDisplay();
+
+}
+
+
+function changeStrike(){
+
+if(striker === 1){
+striker = 2;
+}else{
+striker = 1;
+}
+
+}
+
+updateDisplay();
